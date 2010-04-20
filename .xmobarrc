@@ -1,0 +1,19 @@
+Config { font = "-misc-fixed-*-*-*-*-13-*-*-*-*-*-*-*"
+       , bgColor = "darkslategray"
+       , fgColor = "wheat"
+       , position = TopW L 90
+       , lowerOnStart = True
+       , commands = [ Run Weather "EDDP" ["-t","<tempC>C" , "-L","64" , "-H","77" , "-n","green" , "-h","red" , "-l","lightblue"] 36000
+                    , Run Cpu ["-t","<total>" ,"-L","10" , "-H","50" , "-l","wheat" , "-n","lightblue" , "-h","red"] 10
+		    , Run CpuFreq ["-t","@<cpu0>GHz" , "-L","1" , "-H","2" , "-l","lightblue" , "-n","wheat" , "-h","red"] 10
+		    , Run CoreTemp ["-t","<fc=#CDBA96>T</fc> <core0><fc=#CDBA96>|</fc><core1>" ] 10
+                    , Run Memory ["-t" ,"<fc=#CDBA96>M</fc> <usedratio>%" , "-L","10" , "-H","50" , "-l","wheat" , "-n","lightblue" , "-h","red"] 10
+                    , Run Swap ["-t","<fc=#CDBA96>S</fc> <usedratio>"] 10
+		    , Run Network "eth0" ["-t","<fc=#CDBA96>D</fc> <rx> <fc=#CDBA96>U</fc> <tx>" , "-L","1" , "-H","768" , "-l","wheat" , "-n","lightblue" , "-h","red"] 10
+                    , Run Date "%d.%m.%y %V %H:%M""date" 10
+                    , Run StdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%StdinReader% }{ %cpu%%cpufreq% <fc=#CDBA96>|</fc> %memory% %swap% <fc=#CDBA96>|</fc> %eth0% <fc=#CDBA96>|</fc> %date% <fc=#CDBA96>|</fc> %EDDP% <fc=#CDBA96>|</fc>"
+       }
